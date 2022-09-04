@@ -2,19 +2,19 @@ package model;
 
 public class Pipe {
 
-    private int value;
-    private String id;
+    private PipeType type;
+    private int id;
     private Pipe next;
     private Pipe previous;
 
     public Pipe (int value){
-        this.value=value;
+        type=null;
         next=null;
     }
 
     public String toString(){
         
-        return ""+ value;
+        return ""+ type;
     }
 
     public Pipe getNext(){
@@ -36,6 +36,5 @@ public class Pipe {
         
         this.previous=previous;
     }
-
 
 }
