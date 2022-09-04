@@ -32,21 +32,7 @@ public class Main{
 
 	}
 
-    public void newGame(){
-
-		String name= "";
-
-        System.out.println("Digite el nombre del jugador");
-        name=sc.next();
-        sc.nextLine();
-
-
-		control.createBoard(name);
-	}
-
-
-
-    public int showMenu() {
+	public int showMenu() {
 		int option=0;
 
 		System.out.println(
@@ -62,7 +48,24 @@ public class Main{
 		return option;
 	}
 
-    public void executeOperation(int operation) {
+
+	public int showGameMenu() {
+		int option=0;
+
+		System.out.println(
+				"\nSelect an option\n" +
+				"(1)Poner tuberia\n" +
+				"(2)Simular\n" +
+                "(0)Salir \n"
+				);
+
+		option= sc.nextInt();
+		sc.nextLine();
+		System.out.println("");
+		return option;
+	}
+
+	public void executeOperation(int operation) {
 		
 		switch(operation) {
 		case 0:
@@ -89,4 +92,22 @@ public class Main{
 		
 		}
 	}
+
+    public void newGame(){
+
+		String name= "";
+
+        System.out.println("Digite el nombre del jugador");
+        name=sc.next();
+        sc.nextLine();
+
+
+		control.createBoard(name);
+	}
+
+
+
+
+
+    
 }
