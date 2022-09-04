@@ -56,7 +56,7 @@ public class Score {
     }
 
     public String setName(String name){
-        
+        String d="hola";
         return this.name=name;
     }
 
