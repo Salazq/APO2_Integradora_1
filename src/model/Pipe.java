@@ -7,9 +7,10 @@ public class Pipe {
     private Pipe next;
     private Pipe previous;
 
-    public Pipe (int value){
-        type=null;
+    public Pipe (int id){
+        type=PipeType.EMPTY;
         next=null;
+        this.id=id;
     }
 
     public String toString(){
@@ -35,6 +36,10 @@ public class Pipe {
     public void setPrevious(Pipe previous){
         
         this.previous=previous;
+    }
+
+    public int getId(){
+        return id;
     }
 
 }
