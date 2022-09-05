@@ -143,6 +143,7 @@ public class Main{
 
 		System.out.println("");
 		System.out.println("Número de la columna");
+		
 
 		int column = sc.nextInt();
 		sc.nextLine();
@@ -163,7 +164,7 @@ public class Main{
 
 				int position=positionOfThePipe();
 
-				control.changePipe(position);
+				
 				System.out.println(control.BoardtoString());
 				
 				break;
