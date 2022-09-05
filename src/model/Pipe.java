@@ -14,8 +14,47 @@ public class Pipe {
     }
 
     public String toString(){
+
+        String out ="";
+
+        switch (type){
+
+            case EMPTY:
+
+                out="X";
+                break;
+
+            case CIRCULAR:
+
+                out="o";
+                break;
+
+            case FINAL:
+
+                out="D";
+                break;
+            
+            case START:
+
+                out="F";
+
+                break;
+            
+            
+            case HORIZONTAL:
+
+                out="=";
+
+                break;
+
+            case VERTICAL:
+
+                out="||";
+
+                break;
+        }
         
-        return ""+ type;
+        return out;
     }
 
     public Pipe getNext(){
