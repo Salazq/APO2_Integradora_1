@@ -52,22 +52,49 @@ public class BoardControl {
         }
 	}
 
+    public Pipe searchPipe(int [] positions, Pipe pointer){
+        
+        int columnHelp=8;
+        for (int row=0; row< positions[1] ; row++){
+
+
+            if (row== positions[1]-1) columnHelp=positions[0]-1;
+           
+
+            for(int column=0; column < columnHelp; column++){
+                pointer=pointer.getNext();
+            }
+        }
+       
+        return pointer;
+
+    }
+
     
     public void addStartFinish() {
 
-        int star= (int)(Math.random() * ((64 - 1) + 1)) + 1;
-        int finish;
+
+        int finish, finish2;
+        int star= (int)(Math.random() * ((8 - 1) + 1)) + 1;
+        int star2= (int)(Math.random() * ((8 - 1) + 1)) + 1;
+        finish2=(int)(Math.random() * ((8 - 1) + 1)) + 1;
+        
 
         do{
-        finish=(int)(Math.random() * ((64 - 1) + 1)) + 1;
+        finish=(int)(Math.random() * ((8 - 1) + 1)) + 1;
+        
 
         }while (star==finish);
 
-        selectType(star, 5);
-        selectType(finish, 6);
+        int [] starPosition = {star,star2};
+        int [] finishPosition = {finish, finish2};
+
+
+        selectType(searchPipe(starPosition, head), 5);
+        selectType(searchPipe(finishPosition, head), 6);
 	}
 
-    public void selectType(int pos, int typeNum) {
+    public void selectType(Pipe current, int typeNum) {
 
         PipeType type=PipeType.EMPTY;
 
@@ -100,30 +127,21 @@ public class BoardControl {
                 break;    
         }
 
-        changePipe(pos, head, type);
+        changePipe(current, type);
 
 	}
 
+    public boolean changePipe(Pipe current, PipeType type){
 
-    //Que este método reciba filas y columnas 
-    public boolean changePipe(int pos, Pipe pointer, PipeType type){
+        boolean verification=false;
 
-        boolean verification=true;
-
+        if (current.getType()!= PipeType.START && current.getType()!=PipeType.FINAL){
 
         for(int i=1; i!=pos; i++){
 
-            pointer.getNext();
+            current.getNext();
         }
-
-        if (pointer.getType()!= PipeType.START && pointer.getType()!=PipeType.FINAL){
-
-            pointer.setType(type);
-        }
-        else{
-            verification=false;
-        }
-
+        
         return verification;
 	}
 
@@ -237,5 +255,9 @@ public class BoardControl {
 
     public Score getRoot(){
         return root;
+    }
+
+    public Pipe getHead(){
+        return head;
     }
 }
