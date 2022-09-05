@@ -5,15 +5,16 @@ public class BoardControl {
 
     private Score root;
     private Pipe head;
-    private int size;
-    private Pipe tail;
+    private int []size=new int[2];
+    private String name;
 
     public BoardControl(){
 
+        size[0]=8;
+        size[1]=8;
+
         root=null;
         head=null;
-        tail=null;
-
     }
 
 
@@ -22,7 +23,10 @@ public class BoardControl {
 
     public void createBoard (String name) {
 
-        for(int i=0; i<=64; i++){
+        name=this.name;
+        head=null;
+
+        for(int i=0; i<=(size[0]*size[1]); i++){
 
             Pipe newNode= new Pipe (i+1);
             addPipe(newNode,head);

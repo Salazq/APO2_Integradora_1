@@ -159,8 +159,6 @@ public class Main{
 			
 			default:
 				System.out.println("invalid option");
-
-
 		}
 
 	}
