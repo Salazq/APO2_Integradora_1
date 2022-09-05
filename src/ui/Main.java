@@ -153,8 +153,6 @@ public class Main{
 	}
 
 
-	
-
 
 	// execute operations of the game
 

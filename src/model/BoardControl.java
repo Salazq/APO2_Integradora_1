@@ -104,6 +104,8 @@ public class BoardControl {
 
 	}
 
+
+    //Que este método reciba filas y columnas 
     public boolean changePipe(int pos, Pipe pointer, PipeType type){
 
         boolean verification=true;
