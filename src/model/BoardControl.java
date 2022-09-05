@@ -51,10 +51,15 @@ public class BoardControl {
         String out="";
         Pipe pointer= head;
 
-        for(int i=0; i<size; i++){
+        for(int i=0; i<8; i++){
+            
+            out+="\n";
 
-            out+= "["+pointer.toString()+"]";
-            pointer = pointer.getNext();
+            for(int j=0; j<8; j++){
+
+                out+= "["+pointer.toString()+"]";
+                pointer = pointer.getNext();
+            }
         }
         return out;
     }
