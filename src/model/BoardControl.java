@@ -50,6 +50,44 @@ public class BoardControl {
         }
 	}
 
+    
+
+    public void addStartFinish() {
+
+        int star= (int)(Math.random() * ((64 - 1) + 1)) + 1;
+        int finish;
+
+        do{
+        finish=(int)(Math.random() * ((64 - 1) + 1)) + 1;
+
+        }while (star==finish);
+
+        changePipe(star, head, PipeType.START);
+        changePipe(finish, head, PipeType.FINAL);
+
+	}
+
+    public boolean changePipe(int pos, Pipe pointer, PipeType type){
+
+        boolean verification=true;
+
+
+        for(int i=1; i!=pos; i++){
+
+            pointer.getNext();
+        }
+
+        if (pointer.getType()!= PipeType.START && pointer.getType()!=PipeType.FINAL){
+
+            pointer.setType(type);
+        }
+        else{
+            verification=false;
+        }
+
+        return verification;
+	}
+
     public String BoardtoString (){
 
         String out="";

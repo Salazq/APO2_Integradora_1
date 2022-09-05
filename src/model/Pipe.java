@@ -81,4 +81,12 @@ public class Pipe {
         return id;
     }
 
+    public void setType(PipeType type){
+        this.type=type;
+    }
+
+    public PipeType getType(){
+        return type;
+    }
+
 }
