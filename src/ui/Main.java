@@ -132,8 +132,10 @@ public class Main{
 		control.createBoard(name);
 	}
 
-	public int positionOfThePipe(){
+	public int [] positionOfThePipe(){
 
+		
+		
 		System.out.println("Inserte el la ubicación de la pipe");
 		System.out.println("");
 		System.out.println("Número de la fila");
@@ -148,7 +150,9 @@ public class Main{
 		int column = sc.nextInt();
 		sc.nextLine();
 
-		return column*row;
+		int [] position = {column, row};
+
+		return position;
 	
 	}
 
@@ -159,17 +163,33 @@ public class Main{
 	// execute operations of the game
 
 	public void executeGameOpetation(int operation){
+
+		System.out.println(control.BoardtoString() + "\n");
+		
 		switch(operation){
 
 			case 1:
 
-				System.out.println(control.BoardtoString());
+				int typeOfPipe=0;
+				int [] position=positionOfThePipe();
 
-				int position=positionOfThePipe();
+
+				
+
+				
+				// do while for the type of pipe
+				do {
+
 				System.out.println("Seleccione el tipo de tuberia que desea cambiar\n(1) HORIZONTAL\n(2) CIRCULAR\n(3) EMPTY\n(4) VERTICAL");
-				int typeOfPipe=sc.nextInt();
+				typeOfPipe=sc.nextInt();
 
-				control.selectType(position, typeOfPipe);
+				if(typeOfPipe==5 || typeOfPipe==6) System.out.println("Error opcion no valida");
+
+				}while(typeOfPipe>4 || typeOfPipe<=0);
+
+
+				control.selectType(control.searchPipe(position, control.getHead()), typeOfPipe);
+
 				System.out.println(control.BoardtoString());
 				
 				break;
