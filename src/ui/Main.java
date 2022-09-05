@@ -152,6 +152,9 @@ public class Main{
 	}
 
 
+	
+
+
 	// execute operations of the game
 
 	public void executeGameOpetation(int operation){
@@ -162,8 +165,10 @@ public class Main{
 				System.out.println(control.BoardtoString());
 
 				int position=positionOfThePipe();
+				System.out.println("Seleccione el tipo de tuberia que desea cambiar\n(1) HORIZONTAL\n(2) CIRCULAR\n(3) EMPTY\n(4) VERTICAL");
+				int typeOfPipe=sc.nextInt();
 
-				control.changePipe(position);
+				control.changePipe(position, typeOfPipe);
 				System.out.println(control.BoardtoString());
 				
 				break;
