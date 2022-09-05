@@ -154,8 +154,6 @@ public class Main{
 			
 			default:
 				System.out.println("Going back to the menu of the application");
-
-
 		}
 
 	}
