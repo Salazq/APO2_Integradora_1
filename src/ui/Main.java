@@ -38,6 +38,7 @@ public class Main{
 		int option=0;
 
 		System.out.println(
+				"\n<<<APPLICATION MENU>>>\n"+
 				"\nSelect an option\n" +
 				"(1)Nueva partida\n" +
 				"(2)Ver puntaje\n" +
@@ -56,10 +57,11 @@ public class Main{
 		int option=0;
 
 		System.out.println(
+				"\n<<<GAME MENU>>>\n"+
 				"\nSelect an option\n" +
 				"(1)Poner tuberia\n" +
 				"(2)Simular\n" +
-                "(0)Salir \n"
+                "(3)Salir \n"
 				);
 
 		option= sc.nextInt();
@@ -96,7 +98,7 @@ public class Main{
 				option= showGameMenu();
 				executeGameOpetation(option);
 				
-			}while (option!=0);
+			}while (option!=3);
 
 			break;
 		
@@ -138,27 +140,20 @@ public class Main{
 
 			case 1:
 
+				System.out.println(control.BoardtoString());
+				
 				break;
 
 			case 2: 
 
 				break;
 
-			// case 3 = exit to the game and return to the application menu
-			case 3:
+	
 
-				int option = 0;
-				do{
-					option= showMenu();
-					executeOperation(option);
-					
-				}while (option!=0);
-
-				break;
 
 			
 			default:
-				System.out.println("invalid option");
+				System.out.println("Going back to the application menu");
 
 
 		}
