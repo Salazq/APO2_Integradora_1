@@ -32,6 +32,8 @@ public class Main{
 
 	}
 
+	//Application menu
+
 	public int showMenu() {
 		int option=0;
 
@@ -49,6 +51,7 @@ public class Main{
 	}
 
 
+	//Game Menu
 	public int showGameMenu() {
 		int option=0;
 
@@ -65,18 +68,39 @@ public class Main{
 		return option;
 	}
 
+
+
+	//executeOpetation of the menu of the application 
+
 	public void executeOperation(int operation) {
 		
 		switch(operation) {
 		case 0:
 			System.out.println("Bye");
 			break;
+		
+
+		//Case 1 = new game 
 
 		case 1:
 
+			// create the game board
+			newGame();
+
+			
+
+			//do while to the menu of the game 
+
+			int option = 0;
+			do{
+				option= showGameMenu();
+				executeGameOpetation(option);
+				
+			}while (option!=0);
+
 			break;
-
-
+		
+		// case 2 = simulate the game	
 		case 2:
 
 			if (control.getRoot()!=null){
@@ -93,6 +117,7 @@ public class Main{
 		}
 	}
 
+	// create the game board
     public void newGame(){
 
 		String name= "";
@@ -103,6 +128,41 @@ public class Main{
 
 
 		control.createBoard(name);
+	}
+
+
+	// execute operations of the game
+
+	public void executeGameOpetation(int operation){
+		switch(operation){
+
+			case 1:
+
+				break;
+
+			case 2: 
+
+				break;
+
+			// case 3 = exit to the game and return to the application menu
+			case 3:
+
+				int option = 0;
+				do{
+					option= showMenu();
+					executeOperation(option);
+					
+				}while (option!=0);
+
+				break;
+
+			
+			default:
+				System.out.println("invalid option");
+
+
+		}
+
 	}
 
 
