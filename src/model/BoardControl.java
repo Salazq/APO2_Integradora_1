@@ -52,6 +52,23 @@ public class BoardControl {
         }
 	}
 
+    public Pipe searchPipe(int [] positions, Pipe pointer){
+        
+        int rowHelp=8;
+        for (int column=0; column< positions[0] ; column++){
+
+
+            if (column== positions[0]-1) rowHelp=positions[1];
+            else
+            for(int row=0; row < rowHelp; row++){
+                pointer=pointer.getNext();
+            }
+        }
+       
+        return pointer;
+
+    }
+
     
     public void addStartFinish() {
 
@@ -67,7 +84,7 @@ public class BoardControl {
         selectType(finish, 6);
 	}
 
-    public void selectType(int pos, int typeNum) {
+    public void selectType(Pipe current, int typeNum) {
 
         PipeType type=PipeType.EMPTY;
 
