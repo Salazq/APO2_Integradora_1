@@ -169,7 +169,7 @@ public class Main{
 				System.out.println("Seleccione el tipo de tuberia que desea cambiar\n(1) HORIZONTAL\n(2) CIRCULAR\n(3) EMPTY\n(4) VERTICAL");
 				int typeOfPipe=sc.nextInt();
 
-				control.changePipe(position, typeOfPipe);
+				control.selectType(position, typeOfPipe);
 				System.out.println(control.BoardtoString());
 				
 				break;
@@ -178,10 +178,6 @@ public class Main{
 
 				break;
 
-	
-
-
-			
 			default:
 				System.out.println("Going back to the menu of the application");
 		}

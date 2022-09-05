@@ -31,6 +31,8 @@ public class BoardControl {
             Pipe newNode= new Pipe (i+1);
             addPipe(newNode,head);
         }
+
+        addStartFinish();
 	}
 
     public Pipe addPipe(Pipe newNode,Pipe pointer) {
@@ -51,7 +53,6 @@ public class BoardControl {
 	}
 
     
-
     public void addStartFinish() {
 
         int star= (int)(Math.random() * ((64 - 1) + 1)) + 1;
@@ -62,8 +63,44 @@ public class BoardControl {
 
         }while (star==finish);
 
-        changePipe(star, head, PipeType.START);
-        changePipe(finish, head, PipeType.FINAL);
+        selectType(star, 5);
+        selectType(finish, 6);
+	}
+
+    public void selectType(int pos, int typeNum) {
+
+        PipeType type=PipeType.EMPTY;
+
+        switch(typeNum){
+
+            case 1:
+
+                type=PipeType.HORIZONTAL;
+                break;
+            
+            case 2:
+
+                type=PipeType.CIRCULAR;
+                break;
+            case 3:
+
+                type=PipeType.EMPTY;
+                break;
+            case 4:
+
+                type=PipeType.VERTICAL;
+                break;
+            case 5:
+
+                type=PipeType.START;
+                break;
+            case 6:
+
+                type=PipeType.FINAL;
+                break;    
+        }
+
+        changePipe(pos, head, type);
 
 	}
 
