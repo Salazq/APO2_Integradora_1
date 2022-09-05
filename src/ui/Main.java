@@ -132,6 +132,25 @@ public class Main{
 		control.createBoard(name);
 	}
 
+	public int positionOfThePipe(){
+
+		System.out.println("Inserte el la ubicación de la pipe");
+		System.out.println("");
+		System.out.println("Número de la fila");
+		int row = sc.nextInt();
+		sc.nextLine();
+
+
+		System.out.println("");
+		System.out.println("Número de la columna");
+
+		int column = sc.nextInt();
+		sc.nextLine();
+
+		return column*row;
+	
+	}
+
 
 	// execute operations of the game
 
@@ -140,6 +159,11 @@ public class Main{
 
 			case 1:
 
+				System.out.println(control.BoardtoString());
+
+				int position=positionOfThePipe();
+
+				control.changePipe(position);
 				System.out.println(control.BoardtoString());
 				
 				break;
