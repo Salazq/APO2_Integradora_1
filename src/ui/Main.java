@@ -153,7 +153,6 @@ public class Main{
 		int [] position = {column, row};
 
 		return position;
-	
 	}
 
 
@@ -168,8 +167,9 @@ public class Main{
 
 			case 1:
 
-				int typeOfPipe=0;
 				int [] position=positionOfThePipe();
+				int typeOfPipe=0;
+				
 
 
 				
