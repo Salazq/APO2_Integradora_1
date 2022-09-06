@@ -140,8 +140,10 @@ public class BoardControl {
             current.setType(type);
             verification = true;
         }
+
+        if(verification==false) System.out.println("\n***La posicion seleccionada no se puede cambiar***\n");
         
-  
+        
 
         return verification;
 	}
