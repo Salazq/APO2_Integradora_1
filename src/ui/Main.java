@@ -186,7 +186,7 @@ public class Main{
 				}while(typeOfPipe>4 || typeOfPipe<=0);
 
 
-				control.selectType(control.selectType(position, control.getHead()), typeOfPipe);
+				control.selectType(control.searchPipe(position, control.getHead()), typeOfPipe);
 
 				System.out.println(control.BoardtoString());
 				
