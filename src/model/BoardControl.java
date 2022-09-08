@@ -93,7 +93,8 @@ public class BoardControl {
         selectType(searchPipe(starPosition, head), 5);
         selectType(searchPipe(finishPosition, head), 6);
 	}
-
+    
+    // The method has in the parameter a pipe and a numeber of the type of pipe
     public void selectType(Pipe current, int typeNum) {
 
         PipeType type=PipeType.EMPTY;
