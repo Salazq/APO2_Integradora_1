@@ -21,7 +21,7 @@ public class Pipe {
 
             case EMPTY:
 
-                out="X";
+                out="x";
                 break;
 
             case CIRCULAR:

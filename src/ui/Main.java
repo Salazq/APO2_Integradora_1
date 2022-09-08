@@ -171,9 +171,6 @@ public class Main{
 				int typeOfPipe=0;
 				
 
-
-				
-
 				
 				// do while for the type of pipe
 				do {
@@ -185,7 +182,6 @@ public class Main{
 
 				}while(typeOfPipe>4 || typeOfPipe<=0);
 
-
 				control.selectType(control.searchPipe(position, control.getHead()), typeOfPipe);
 
 				System.out.println(control.BoardtoString());
@@ -193,7 +189,8 @@ public class Main{
 				break;
 
 			case 2: 
-
+				
+				System.out.println(control.preSimulate());
 				break;
 
 			default:
