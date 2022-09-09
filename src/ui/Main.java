@@ -1,4 +1,5 @@
 package ui;
+import java.util.Random;
 import java.util.Scanner;
 import model.BoardControl;
 
@@ -6,15 +7,12 @@ public class Main{
 
     private BoardControl control;
 	private Scanner sc;
+	private String name;
 	
 	public Main(){
 
         control= new BoardControl();
-		control.createScore(2, "A");
-		control.createScore(1, "B");
-		control.createScore(4, "C");
-		control.createScore(3, "D");
-		control.createScore(5, "E");
+
 
 		sc= new Scanner(System.in);
     }
@@ -122,15 +120,17 @@ public class Main{
 	// create the game board
     public void newGame(){
 
-		String name= "";
+		name="";
 
         System.out.println("Digite el nombre del jugador");
         name=sc.next();
         sc.nextLine();
-
+		
 
 		control.createBoard(name);
 	}
+
+
 
 	public int [] positionOfThePipe(){
 
@@ -195,7 +195,7 @@ public class Main{
 				break;
 
 			case 2: 
-
+				
 				break;
 
 			default:

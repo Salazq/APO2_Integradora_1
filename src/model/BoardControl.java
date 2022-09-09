@@ -7,6 +7,7 @@ public class BoardControl {
     private Pipe head;
     private int []size=new int[2];
     private String name;
+    private int counterOfPipes;
 
     public BoardControl(){
 
@@ -22,7 +23,7 @@ public class BoardControl {
 
 
     public void createBoard (String name) {
-
+        counterOfPipes = -2;
         name=this.name;
         head=null;
 
@@ -96,7 +97,7 @@ public class BoardControl {
     
     // The method has in the parameter a pipe and a numeber of the type of pipe
     public void selectType(Pipe current, int typeNum) {
-
+        counterOfPipes++;
         PipeType type=PipeType.EMPTY;
 
         switch(typeNum){
@@ -175,7 +176,7 @@ public class BoardControl {
         addScore(newNode,root);
 	}
 
-    public Score addScore(Score newNode,Score pointer) {
+    private Score addScore(Score newNode,Score pointer) {
 
         if (pointer==null) {
             root = newNode;
