@@ -7,6 +7,8 @@ public class BoardControl {
     private Pipe head;
     private int []size=new int[2];
     private String name;
+    private Pipe f;
+    private Pipe d;
     private int counterOfPipes;
 
     public BoardControl(){
@@ -90,9 +92,11 @@ public class BoardControl {
         int [] starPosition = {star,star2};
         int [] finishPosition = {finish, finish2};
 
+        f=searchPipe(starPosition, head);
+        d=searchPipe(finishPosition, head);
 
-        selectType(searchPipe(starPosition, head), 5);
-        selectType(searchPipe(finishPosition, head), 6);
+        selectType( f,5);
+        selectType(d, 6);
 	}
     
     // The method has in the parameter a pipe and a numeber of the type of pipe
@@ -167,6 +171,137 @@ public class BoardControl {
         }
         return out;
     }
+
+    public String preSimulate(){
+
+
+        if (simulate(f,0)==true){
+            return "La solucion es correcta";
+        }
+        else {
+            return "La tuberia no funciona";
+        }
+
+    }
+
+    public Pipe upDown(Pipe pointer, int upDown) {
+        
+        for (int i=0; i<8; i++){
+
+            if (upDown==1){
+                pointer=pointer.getPrevious();
+            }
+            else{
+                pointer=pointer.getNext();
+            }
+        }
+        return pointer;
+	}
+
+    //direction= 1 arriba, 2 derecha, 3 abajo, 4 izquierda
+
+    public boolean simulate(Pipe pointer, int direction) {
+
+
+        if (pointer!=null){
+            System.out.println("Entró");
+            if (pointer.getType()==PipeType.FINAL){
+                System.out.println("Final");
+                return true;
+            }
+
+            //For start
+            else if (pointer.getType()==PipeType.START){
+                System.out.println("inicio");
+
+                if (pointer.getNext().getType()==PipeType.HORIZONTAL) {
+                    return simulate(pointer.getNext(),2);
+                }
+
+                if (pointer.getPrevious().getType()==PipeType.HORIZONTAL) {
+                    return simulate(pointer.getPrevious(),4);
+                }
+
+                if (upDown(pointer,1).getType()==PipeType.VERTICAL) {
+                    return simulate(upDown(pointer, 1),1);
+                }
+
+                if (upDown(pointer,2).getType()==PipeType.VERTICAL) {
+                    return simulate(upDown(pointer, 2),3);
+                }
+            }
+
+            //For horizontal
+            else if (pointer.getType()==PipeType.HORIZONTAL){
+                System.out.println("Horizontal");
+
+                if (direction==2){
+
+                    if (pointer.getNext().getType()==PipeType.HORIZONTAL || pointer.getNext().getType()==PipeType.CIRCULAR || pointer.getNext().getType()==PipeType.FINAL) {
+                        return simulate(pointer.getNext(), 2);
+                    }
+                }
+                if (direction==4){
+
+                    if (pointer.getPrevious().getType()==PipeType.HORIZONTAL || pointer.getPrevious().getType()==PipeType.CIRCULAR ||pointer.getPrevious().getType()==PipeType.FINAL) {
+                        return simulate(pointer.getPrevious(), 4);
+                    }
+                }
+            }
+
+            //For vertical
+            else if (pointer.getType()==PipeType.VERTICAL){
+
+                System.out.println("Vertical");
+
+                if (direction==1){
+
+                    if (upDown(pointer,1).getType()==PipeType.VERTICAL|| upDown(pointer,1).getType()==PipeType.CIRCULAR || upDown(pointer,1).getType()==PipeType.FINAL) {
+                        return simulate(upDown(pointer, 1), 1);
+                    }
+                }
+
+                if (direction==3){
+
+                    if (upDown(pointer,2).getType()==PipeType.VERTICAL|| upDown(pointer,2).getType()==PipeType.CIRCULAR ||upDown(pointer,2).getType()==PipeType.FINAL) {
+                        return simulate(upDown(pointer, 2),3);
+                    }
+                }
+            }
+
+            //For circular
+            else if (pointer.getType()==PipeType.CIRCULAR){
+
+                System.out.println("circular");
+
+                if (direction==1||direction==3){
+
+                    if (pointer.getNext().getType()==PipeType.HORIZONTAL) {
+                        return simulate(pointer.getNext(), 2);
+                    }
+
+                    if (pointer.getPrevious().getType()==PipeType.HORIZONTAL ) {
+                        return simulate(pointer.getPrevious(), 4);
+                    }
+                }
+
+                if (direction==2||direction==4){
+
+                    if (upDown(pointer,1).getType()==PipeType.VERTICAL) {
+                        return simulate(upDown(pointer, 1), 1);
+                    }
+
+                    if (upDown(pointer,2).getType()==PipeType.VERTICAL) {
+                        return simulate(upDown(pointer, 2),3);
+                    }
+                }
+            }
+            else{
+                return false;
+            }
+        }
+        return false;
+	}
 
     //Score****************************************************************************************************************************
 

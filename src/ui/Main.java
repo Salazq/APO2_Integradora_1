@@ -153,11 +153,8 @@ public class Main{
 		int [] position = {column, row};
 
 		return position;
-	
 	}
 
-
-	
 
 
 	// execute operations of the game
@@ -170,10 +167,8 @@ public class Main{
 
 			case 1:
 
-				int typeOfPipe=0;
 				int [] position=positionOfThePipe();
-
-
+				int typeOfPipe=0;
 				
 
 				
@@ -187,7 +182,6 @@ public class Main{
 
 				}while(typeOfPipe>4 || typeOfPipe<=0);
 
-
 				control.selectType(control.searchPipe(position, control.getHead()), typeOfPipe);
 
 				System.out.println(control.BoardtoString());
@@ -196,6 +190,7 @@ public class Main{
 
 			case 2: 
 				
+				System.out.println(control.preSimulate());
 				break;
 
 			default:
