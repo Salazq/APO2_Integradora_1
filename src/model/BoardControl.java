@@ -97,7 +97,8 @@ public class BoardControl {
         selectType( f,5);
         selectType(d, 6);
 	}
-
+    
+    // The method has in the parameter a pipe and a numeber of the type of pipe
     public void selectType(Pipe current, int typeNum) {
 
         PipeType type=PipeType.EMPTY;
