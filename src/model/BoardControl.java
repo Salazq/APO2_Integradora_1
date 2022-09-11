@@ -176,11 +176,11 @@ public class BoardControl {
 
 
         if (simulate(f,0)==true){
-            System.out.println("La solucion es correcta");
+            
             return true;
         }
         else {
-            System.out.println("La tuberia no funciona");
+            
             return false;
         }
 
@@ -206,15 +206,15 @@ public class BoardControl {
 
 
         if (pointer!=null){
-            System.out.println("Entró");
+            
             if (pointer.getType()==PipeType.FINAL){
-                System.out.println("Final");
+                
                 return true;
             }
 
             //For start
             else if (pointer.getType()==PipeType.START){
-                System.out.println("inicio");
+                
 
                 if (pointer.getNext().getType()==PipeType.HORIZONTAL) {
                     return simulate(pointer.getNext(),2);
@@ -235,7 +235,7 @@ public class BoardControl {
 
             //For horizontal
             else if (pointer.getType()==PipeType.HORIZONTAL){
-                System.out.println("Horizontal");
+                
 
                 if (direction==2){
 
@@ -254,7 +254,7 @@ public class BoardControl {
             //For vertical
             else if (pointer.getType()==PipeType.VERTICAL){
 
-                System.out.println("Vertical");
+                
 
                 if (direction==1){
 
@@ -274,7 +274,7 @@ public class BoardControl {
             //For circular
             else if (pointer.getType()==PipeType.CIRCULAR){
 
-                System.out.println("circular");
+                
 
                 if (direction==1||direction==3){
 
@@ -351,6 +351,7 @@ public class BoardControl {
 
 
         double score = counterOfPipes * 100 -(60 - totalTime) * 10;
+       
 
         return score;
     }

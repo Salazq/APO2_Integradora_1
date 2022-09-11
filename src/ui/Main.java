@@ -1,7 +1,6 @@
 package ui;
-import java.util.Random;
 import java.util.Scanner;
-import java.util.ResourceBundle.Control;
+
 
 import model.BoardControl;
 
@@ -17,8 +16,6 @@ public class Main{
 
         control= new BoardControl();
 
-		control.createScore(100000, "pedrooooooooooooooo");
-		control.createScore(102, "juan");
 		sc= new Scanner(System.in);
     }
 
@@ -150,16 +147,16 @@ public class Main{
 		
 		System.out.println("Inserte el la ubicación de la pipe");
 		System.out.println("");
-		System.out.println("Número de la fila");
-		int row = sc.nextInt();
+		System.out.println("Número de la fila entre (0 y 7)");
+		int row = sc.nextInt()+1;
 		sc.nextLine();
 
 
 		System.out.println("");
-		System.out.println("Número de la columna");
+		System.out.println("Número de la columna entre (0 y 7)");
 		
 
-		int column = sc.nextInt();
+		int column = sc.nextInt()+1;
 		sc.nextLine();
 
 		int [] position = {column, row};
@@ -187,7 +184,7 @@ public class Main{
 				// do while for the type of pipe
 				do {
 
-				System.out.println("Seleccione el tipo de tuberia que desea cambiar\n(1) HORIZONTAL\n(2) CIRCULAR\n(3) EMPTY\n(4) VERTICAL");
+				System.out.println("Seleccione el tipo de tuberia que desea cambiar\n(1) = \n(2) o\n(3) x\n(4) ||");
 				typeOfPipe=sc.nextInt();
 
 				if(typeOfPipe==5 || typeOfPipe==6) System.out.println("Error opcion no valida");
@@ -209,12 +206,18 @@ public class Main{
 					
 					control.createScore(control.calculateScore(endExecution), name);
 
+					System.out.println("La solución es correcta");
+					System.out.println("Tu puntaje fue de: " + control.calculateScore(endExecution));
+
+				}else{
+
+					System.out.println("La solución no es correcta");
 				}
 
 				break;
 
 			default:
-				System.out.println("Going back to the menu of the application");
+				System.out.println("\nVolviendo al menú de la aplicación...");
 		}
 
 	}
