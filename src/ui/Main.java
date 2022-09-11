@@ -1,6 +1,8 @@
 package ui;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.ResourceBundle.Control;
+
 import model.BoardControl;
 
 public class Main{
@@ -8,17 +10,21 @@ public class Main{
     private BoardControl control;
 	private Scanner sc;
 	private String name;
+	private long starExecution=0;
+	private boolean simulator=false;
 	
 	public Main(){
 
         control= new BoardControl();
 
-
+		control.createScore(100000, "pedrooooooooooooooo");
+		control.createScore(102, "juan");
 		sc= new Scanner(System.in);
     }
 
     public static void main(String[] args) {
 
+		
 		Main m = new Main();
 		
 		int option = 0;
@@ -93,7 +99,12 @@ public class Main{
 
 			int option = 0;
 			do{
-				option= showGameMenu();
+				
+				if(simulator==true){
+					option=3;
+				}else{
+					option= showGameMenu();
+				}
 				executeGameOpetation(option);
 				
 			}while (option!=3);
@@ -104,7 +115,7 @@ public class Main{
 		case 2:
 
 			if (control.getRoot()!=null){
-				System.out.println(control.scoreToString(control.createArray()));
+				control.scoreToString(control.createArray());
 			}
 			else{
 				System.out.println("No hay scores registrados");
@@ -128,6 +139,7 @@ public class Main{
 		
 
 		control.createBoard(name);
+		starExecution = System.nanoTime();
 	}
 
 
@@ -161,8 +173,8 @@ public class Main{
 
 	public void executeGameOpetation(int operation){
 
-		System.out.println(control.BoardtoString() + "\n");
-		
+		control.BoardtoString();
+		System.out.println("");
 		switch(operation){
 
 			case 1:
@@ -184,13 +196,21 @@ public class Main{
 
 				control.selectType(control.searchPipe(position, control.getHead()), typeOfPipe);
 
-				System.out.println(control.BoardtoString());
+				control.BoardtoString();
 				
 				break;
 
 			case 2: 
 				
-				System.out.println(control.preSimulate());
+				simulator =control.preSimulate();
+				
+				if(simulator==true){
+					double endExecution = (System.nanoTime()-starExecution)/ 1e9;
+					
+					control.createScore(control.calculateScore(endExecution), name);
+
+				}
+
 				break;
 
 			default:

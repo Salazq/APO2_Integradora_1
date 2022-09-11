@@ -154,32 +154,34 @@ public class BoardControl {
         return verification;
 	}
 
-    public String BoardtoString (){
+    public void BoardtoString (){
 
-        String out="";
+        
         Pipe pointer= head;
 
         for(int i=0; i<8; i++){
             
-            out+="\n";
+            System.out.println("\n");
 
             for(int j=0; j<8; j++){
 
-                out+= "["+pointer.toString()+"]";
+                pointer.printerBoard();;
                 pointer = pointer.getNext();
             }
         }
-        return out;
+
     }
 
-    public String preSimulate(){
+    public boolean preSimulate(){
 
 
         if (simulate(f,0)==true){
-            return "La solucion es correcta";
+            System.out.println("La solucion es correcta");
+            return true;
         }
         else {
-            return "La tuberia no funciona";
+            System.out.println("La tuberia no funciona");
+            return false;
         }
 
     }
@@ -305,7 +307,7 @@ public class BoardControl {
 
     //Score****************************************************************************************************************************
 
-    public void createScore(int val, String name) {
+    public void createScore(double val, String name) {
 
         Score newNode= new Score (val, name);
         addScore(newNode,root);
@@ -344,6 +346,15 @@ public class BoardControl {
         }
 	}
 
+    public double calculateScore(double totalTime){
+        
+
+
+        double score = counterOfPipes * 100 -(60 - totalTime) * 10;
+
+        return score;
+    }
+
     public Score searchByScore(int score,Score pointer) {
 
         if (pointer==null){
@@ -381,15 +392,17 @@ public class BoardControl {
 	}
 
 
-    public String scoreToString(ArrayList<Score> array){
+    public void scoreToString(ArrayList<Score> array){
 
-        String out="Score      Nombre";
+        System.out.printf("%21s %11s","Nombre", "Score");
+        System.out.println("");
 
         for (int i=array.size();i>0; i--){
-            out+="\n"+array.get(i-1).toString();
+        array.get(i-1).tableScore();
+        System.out.println("");
         }
 
-        return out;
+        
     }
 
 

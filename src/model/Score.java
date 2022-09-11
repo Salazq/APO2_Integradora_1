@@ -2,21 +2,21 @@ package model;
 
 public class Score {
 
-    private int score;
+    private double score;
     private String name;
     private Score right;
     private Score left;
 
-    public Score (int score, String name){
+    public Score (double score, String name){
         this.score=score;
         this.name=name;
         right=null;
         left=null;
     }
 
-    public String toString(){
+    public void tableScore(){
         
-        return  score + "          "+ name;
+        System.out.printf("|%20s| |%10s|", name , score,"\n");
     }
 
     public Score getRight(){
@@ -39,7 +39,7 @@ public class Score {
         this.left=left;
     }
 
-    public int getValue(){
+    public double getValue(){
         
         return score;
     }

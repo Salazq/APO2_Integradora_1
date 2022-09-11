@@ -13,48 +13,47 @@ public class Pipe {
         this.id=id;
     }
 
-    public String toString(){
+    public void printerBoard(){
 
-        String out ="";
+        
 
         switch (type){
 
             case EMPTY:
 
-                out="x";
+                System.out.printf("%1s %1s %1s","[","x","]");
                 break;
 
             case CIRCULAR:
 
-                out="o";
+                System.out.printf("%1s %1s %1s","[","o","]");
                 break;
 
             case FINAL:
 
-                out="D";
+                System.out.printf("%1s %1s %1s","[","D","]");
                 break;
             
             case START:
 
-                out="F";
+                System.out.printf("%1s %1s %1s","[","F","]");
 
                 break;
             
             
             case HORIZONTAL:
 
-                out="=";
+                System.out.printf("%1s %1s %1s","[","=","]");
 
                 break;
 
             case VERTICAL:
 
-                out="||";
+            System.out.printf("%1s","[| |]");
 
                 break;
         }
         
-        return out;
     }
 
     public Pipe getNext(){
