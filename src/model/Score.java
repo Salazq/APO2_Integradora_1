@@ -19,42 +19,75 @@ public class Score {
         System.out.printf("|%20s| |%10s|", name , score,"\n");
     }
 
+    
+    /** 
+     * @return Score
+     */
     public Score getRight(){
         
         return right;
     }
 
+    
+    /** 
+     * @param right
+     */
     public void setRight(Score right){
         
         this.right=right;
     }
 
+    
+    /** 
+     * @return Score
+     */
     public Score getLeft(){
         
         return left;
     }
 
+    
+    /** 
+     * @param left
+     */
     public void setLeft(Score left){
         
         this.left=left;
     }
 
+    
+    /** 
+     * @return double
+     */
     public double getValue(){
         
         return score;
     }
 
+    
+    /** 
+     * @param score
+     */
     public void setScore(int score){
         
         this.score=score;
     }
 
 
+    
+    /** 
+     * @return String
+     */
     public String getName(){
         
         return name;
     }
 
+    
+    /** 
+     * @param name
+     * @return String
+     */
     public String setName(String name){
         return this.name=name;
     }

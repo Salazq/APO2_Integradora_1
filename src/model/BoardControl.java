@@ -21,6 +21,10 @@ public class BoardControl {
     }
 
 
+    
+    /** 
+     * @param name
+     */
     //Pipes****************************************************************************************************************************
 
 
@@ -38,6 +42,12 @@ public class BoardControl {
         addStartFinish();
 	}
 
+    
+    /** 
+     * @param newNode
+     * @param pointer
+     * @return Pipe
+     */
     public Pipe addPipe(Pipe newNode,Pipe pointer) {
 
         if (pointer==null) {
@@ -55,6 +65,12 @@ public class BoardControl {
         }
 	}
 
+    
+    /** 
+     * @param positions
+     * @param pointer
+     * @return Pipe
+     */
     public Pipe searchPipe(int [] positions, Pipe pointer){
         
         int columnHelp=8;
@@ -99,6 +115,11 @@ public class BoardControl {
         selectType(d, 6);
 	}
     
+    
+    /** 
+     * @param current
+     * @param typeNum
+     */
     // The method has in the parameter a pipe and a numeber of the type of pipe
     public void selectType(Pipe current, int typeNum) {
         counterOfPipes++;
@@ -137,6 +158,12 @@ public class BoardControl {
 
 	}
 
+    
+    /** 
+     * @param current
+     * @param type
+     * @return boolean
+     */
     public boolean changePipe(Pipe current, PipeType type){
 
         boolean verification=false;
@@ -172,6 +199,10 @@ public class BoardControl {
 
     }
 
+    
+    /** 
+     * @return boolean
+     */
     public boolean preSimulate(){
 
 
@@ -186,6 +217,12 @@ public class BoardControl {
 
     }
 
+    
+    /** 
+     * @param pointer
+     * @param upDown
+     * @return Pipe
+     */
     public Pipe upDown(Pipe pointer, int upDown) {
         
         for (int i=0; i<8; i++){
@@ -200,6 +237,12 @@ public class BoardControl {
         return pointer;
 	}
 
+    
+    /** 
+     * @param pointer
+     * @param direction
+     * @return boolean
+     */
     //direction= 1 arriba, 2 derecha, 3 abajo, 4 izquierda
 
     public boolean simulate(Pipe pointer, int direction) {
@@ -305,6 +348,11 @@ public class BoardControl {
         return false;
 	}
 
+    
+    /** 
+     * @param val
+     * @param name
+     */
     //Score****************************************************************************************************************************
 
     public void createScore(double val, String name) {
@@ -313,6 +361,12 @@ public class BoardControl {
         addScore(newNode,root);
 	}
 
+    
+    /** 
+     * @param newNode
+     * @param pointer
+     * @return Score
+     */
     private Score addScore(Score newNode,Score pointer) {
 
         if (pointer==null) {
@@ -346,6 +400,11 @@ public class BoardControl {
         }
 	}
 
+    
+    /** 
+     * @param totalTime
+     * @return double
+     */
     public double calculateScore(double totalTime){
         
 
@@ -356,6 +415,12 @@ public class BoardControl {
         return score;
     }
 
+    
+    /** 
+     * @param score
+     * @param pointer
+     * @return Score
+     */
     public Score searchByScore(int score,Score pointer) {
 
         if (pointer==null){
@@ -373,11 +438,21 @@ public class BoardControl {
         }
 	}
 
+    
+    /** 
+     * @return ArrayList<Score>
+     */
     public ArrayList<Score> createArray (){
         ArrayList<Score> array = new ArrayList<>();
         return listScores(root, array);
     }
 
+    
+    /** 
+     * @param pointer
+     * @param array
+     * @return ArrayList<Score>
+     */
     public ArrayList<Score> listScores(Score pointer,ArrayList<Score> array) {
 
         if (pointer.getLeft()!=null){
@@ -393,6 +468,10 @@ public class BoardControl {
 	}
 
 
+    
+    /** 
+     * @param array
+     */
     public void scoreToString(ArrayList<Score> array){
 
         System.out.printf("%21s %11s","Nombre", "Score");
@@ -407,10 +486,18 @@ public class BoardControl {
     }
 
 
+    
+    /** 
+     * @return Score
+     */
     public Score getRoot(){
         return root;
     }
 
+    
+    /** 
+     * @return Pipe
+     */
     public Pipe getHead(){
         return head;
     }

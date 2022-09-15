@@ -19,7 +19,11 @@ public class Main{
 		sc= new Scanner(System.in);
     }
 
-    public static void main(String[] args) {
+    
+	/** 
+	 * @param args
+	 */
+	public static void main(String[] args) {
 
 		
 		Main m = new Main();
@@ -33,6 +37,10 @@ public class Main{
 
 	}
 
+	
+	/** 
+	 * @return int
+	 */
 	//Application menu
 
 	public int showMenu() {
@@ -53,6 +61,10 @@ public class Main{
 	}
 
 
+	
+	/** 
+	 * @return int
+	 */
 	//Game Menu
 	public int showGameMenu() {
 		int option=0;
@@ -73,6 +85,10 @@ public class Main{
 
 
 
+	
+	/** 
+	 * @param operation
+	 */
 	//executeOpetation of the menu of the application 
 
 	public void executeOperation(int operation) {
@@ -99,6 +115,7 @@ public class Main{
 				
 				if(simulator==true){
 					option=3;
+					simulator=false;
 				}else{
 					option= showGameMenu();
 				}
@@ -141,6 +158,10 @@ public class Main{
 
 
 
+	
+	/** 
+	 * @return int[]
+	 */
 	public int [] positionOfThePipe(){
 
 		
@@ -166,6 +187,10 @@ public class Main{
 
 
 
+	
+	/** 
+	 * @param operation
+	 */
 	// execute operations of the game
 
 	public void executeGameOpetation(int operation){
@@ -208,6 +233,7 @@ public class Main{
 
 					System.out.println("La solución es correcta");
 					System.out.println("Tu puntaje fue de: " + control.calculateScore(endExecution));
+					
 
 				}else{
 

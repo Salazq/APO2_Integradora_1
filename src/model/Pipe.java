@@ -56,34 +56,62 @@ public class Pipe {
         
     }
 
+    
+    /** 
+     * @return Pipe
+     */
     public Pipe getNext(){
         
         return next;
     }
 
+    
+    /** 
+     * @param next
+     */
     public void setNext(Pipe next){
         
         this.next=next;
     }
 
+    
+    /** 
+     * @return Pipe
+     */
     public Pipe getPrevious(){
         
         return previous;
     }
 
+    
+    /** 
+     * @param previous
+     */
     public void setPrevious(Pipe previous){
         
         this.previous=previous;
     }
 
+    
+    /** 
+     * @return int
+     */
     public int getId(){
         return id;
     }
 
+    
+    /** 
+     * @param type
+     */
     public void setType(PipeType type){
         this.type=type;
     }
 
+    
+    /** 
+     * @return PipeType
+     */
     public PipeType getType(){
         return type;
     }
