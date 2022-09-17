@@ -1,3 +1,5 @@
+//Juan Camilo Salazar (A00381085) y Brayan Steven Ortega (A00380171)
+
 package ui;
 import java.util.Scanner;
 
