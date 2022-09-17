@@ -16,10 +16,9 @@ public class Score {
 
     public void tableScore(){
         
-        System.out.printf("|%20s| |%10s|", name , score,"\n");
+        System.out.printf("|%20s| |%10s|", name , String.format("%.2f", score),"\n");
     }
 
-    
     /** 
      * @return Score
      */
@@ -28,7 +27,6 @@ public class Score {
         return right;
     }
 
-    
     /** 
      * @param right
      */
@@ -37,7 +35,6 @@ public class Score {
         this.right=right;
     }
 
-    
     /** 
      * @return Score
      */
@@ -46,7 +43,6 @@ public class Score {
         return left;
     }
 
-    
     /** 
      * @param left
      */
@@ -55,7 +51,6 @@ public class Score {
         this.left=left;
     }
 
-    
     /** 
      * @return double
      */
@@ -64,7 +59,6 @@ public class Score {
         return score;
     }
 
-    
     /** 
      * @param score
      */
@@ -73,8 +67,6 @@ public class Score {
         this.score=score;
     }
 
-
-    
     /** 
      * @return String
      */
@@ -83,7 +75,6 @@ public class Score {
         return name;
     }
 
-    
     /** 
      * @param name
      * @return String
@@ -91,5 +82,4 @@ public class Score {
     public String setName(String name){
         return this.name=name;
     }
-
 }

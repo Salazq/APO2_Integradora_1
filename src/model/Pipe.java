@@ -15,8 +15,6 @@ public class Pipe {
 
     public void printerBoard(){
 
-        
-
         switch (type){
 
             case EMPTY:
@@ -53,10 +51,8 @@ public class Pipe {
 
                 break;
         }
-        
     }
 
-    
     /** 
      * @return Pipe
      */
@@ -65,7 +61,6 @@ public class Pipe {
         return next;
     }
 
-    
     /** 
      * @param next
      */
@@ -74,7 +69,6 @@ public class Pipe {
         this.next=next;
     }
 
-    
     /** 
      * @return Pipe
      */
@@ -83,7 +77,6 @@ public class Pipe {
         return previous;
     }
 
-    
     /** 
      * @param previous
      */
@@ -91,7 +84,6 @@ public class Pipe {
         
         this.previous=previous;
     }
-
     
     /** 
      * @return int
@@ -100,7 +92,6 @@ public class Pipe {
         return id;
     }
 
-    
     /** 
      * @param type
      */
@@ -108,12 +99,10 @@ public class Pipe {
         this.type=type;
     }
 
-    
     /** 
      * @return PipeType
      */
     public PipeType getType(){
         return type;
     }
-
 }

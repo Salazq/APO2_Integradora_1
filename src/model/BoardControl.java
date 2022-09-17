@@ -20,16 +20,13 @@ public class BoardControl {
         head=null;
     }
 
+    //Pipes****************************************************************************************************************************
 
-    
     /** 
      * @param name
      */
-    //Pipes****************************************************************************************************************************
-
-
     public void createBoard (String name) {
-        counterOfPipes = -2;
+        counterOfPipes = 0;
         name=this.name;
         head=null;
 
@@ -38,11 +35,9 @@ public class BoardControl {
             Pipe newNode= new Pipe (i+1);
             addPipe(newNode,head);
         }
-
         addStartFinish();
 	}
 
-    
     /** 
      * @param newNode
      * @param pointer
@@ -84,9 +79,7 @@ public class BoardControl {
                 pointer=pointer.getNext();
             }
         }
-       
         return pointer;
-
     }
 
     
@@ -98,11 +91,9 @@ public class BoardControl {
         int star2= (int)(Math.random() * ((8 - 1) + 1)) + 1;
         finish2=(int)(Math.random() * ((8 - 1) + 1)) + 1;
         
-
         do{
         finish=(int)(Math.random() * ((8 - 1) + 1)) + 1;
         
-
         }while (star==finish);
 
         int [] starPosition = {star,star2};
@@ -122,40 +113,35 @@ public class BoardControl {
      */
     // The method has in the parameter a pipe and a numeber of the type of pipe
     public void selectType(Pipe current, int typeNum) {
-        counterOfPipes++;
         PipeType type=PipeType.EMPTY;
 
         switch(typeNum){
 
             case 1:
-
                 type=PipeType.HORIZONTAL;
                 break;
             
             case 2:
-
                 type=PipeType.CIRCULAR;
                 break;
-            case 3:
 
+            case 3:
                 type=PipeType.EMPTY;
                 break;
-            case 4:
 
+            case 4:
                 type=PipeType.VERTICAL;
                 break;
-            case 5:
 
+            case 5:
                 type=PipeType.START;
                 break;
-            case 6:
 
+            case 6:
                 type=PipeType.FINAL;
                 break;    
         }
-
         changePipe(current, type);
-
 	}
 
     
@@ -173,17 +159,13 @@ public class BoardControl {
             current.setType(type);
             verification = true;
         }
-
         if(verification==false) System.out.println("\n***La posicion seleccionada no se puede cambiar***\n");
         
-        
-
         return verification;
 	}
 
     public void BoardtoString (){
 
-        
         Pipe pointer= head;
 
         for(int i=0; i<8; i++){
@@ -196,28 +178,24 @@ public class BoardControl {
                 pointer = pointer.getNext();
             }
         }
-
     }
 
-    
     /** 
      * @return boolean
      */
     public boolean preSimulate(){
 
+        counterOfPipes=0;
 
         if (simulate(f,0)==true){
             
             return true;
         }
         else {
-            
             return false;
         }
-
     }
 
-    
     /** 
      * @param pointer
      * @param upDown
@@ -228,10 +206,20 @@ public class BoardControl {
         for (int i=0; i<8; i++){
 
             if (upDown==1){
-                pointer=pointer.getPrevious();
+                if(pointer.getPrevious()!=null){
+                    pointer=pointer.getPrevious();
+                }
+                else{
+                    return pointer=null;
+                }
             }
             else{
-                pointer=pointer.getNext();
+                if(pointer.getNext()!=null){
+                    pointer=pointer.getNext();
+                }
+                else{
+                    return pointer=null;
+                }
             }
         }
         return pointer;
@@ -247,7 +235,6 @@ public class BoardControl {
 
     public boolean simulate(Pipe pointer, int direction) {
 
-
         if (pointer!=null){
             
             if (pointer.getType()==PipeType.FINAL){
@@ -258,86 +245,107 @@ public class BoardControl {
             //For start
             else if (pointer.getType()==PipeType.START){
                 
-
-                if (pointer.getNext().getType()==PipeType.HORIZONTAL) {
-                    return simulate(pointer.getNext(),2);
+                if(pointer.getNext()!=null){
+                    if (pointer.getNext().getType()==PipeType.HORIZONTAL) {
+                        return simulate(pointer.getNext(),2);
+                    }
                 }
 
-                if (pointer.getPrevious().getType()==PipeType.HORIZONTAL) {
-                    return simulate(pointer.getPrevious(),4);
+                if(pointer.getPrevious()!=null){
+                    if (pointer.getPrevious().getType()==PipeType.HORIZONTAL) {
+                        return simulate(pointer.getPrevious(),4);
+                    }
+                }
+            
+                if(upDown(pointer,1)!=null){
+                    if (upDown(pointer,1).getType()==PipeType.VERTICAL) {
+                        return simulate(upDown(pointer, 1),1);
+                    }
                 }
 
-                if (upDown(pointer,1).getType()==PipeType.VERTICAL) {
-                    return simulate(upDown(pointer, 1),1);
-                }
-
-                if (upDown(pointer,2).getType()==PipeType.VERTICAL) {
-                    return simulate(upDown(pointer, 2),3);
+                if(upDown(pointer,2)!=null){
+                    if (upDown(pointer,2).getType()==PipeType.VERTICAL) {
+                        return simulate(upDown(pointer, 2),3);
+                    }
                 }
             }
 
             //For horizontal
             else if (pointer.getType()==PipeType.HORIZONTAL){
+                counterOfPipes++;
                 
-
                 if (direction==2){
 
-                    if (pointer.getNext().getType()==PipeType.HORIZONTAL || pointer.getNext().getType()==PipeType.CIRCULAR || pointer.getNext().getType()==PipeType.FINAL) {
-                        return simulate(pointer.getNext(), 2);
+                    if(pointer.getNext()!=null){
+                        if (pointer.getNext().getType()==PipeType.HORIZONTAL || pointer.getNext().getType()==PipeType.CIRCULAR || pointer.getNext().getType()==PipeType.FINAL) {
+                            return simulate(pointer.getNext(), 2);
+                        }
                     }
                 }
                 if (direction==4){
 
-                    if (pointer.getPrevious().getType()==PipeType.HORIZONTAL || pointer.getPrevious().getType()==PipeType.CIRCULAR ||pointer.getPrevious().getType()==PipeType.FINAL) {
-                        return simulate(pointer.getPrevious(), 4);
+                    if(pointer.getPrevious()!=null){
+                        if (pointer.getPrevious().getType()==PipeType.HORIZONTAL || pointer.getPrevious().getType()==PipeType.CIRCULAR ||pointer.getPrevious().getType()==PipeType.FINAL) {
+                            return simulate(pointer.getPrevious(), 4);
+                        }
                     }
                 }
             }
 
             //For vertical
             else if (pointer.getType()==PipeType.VERTICAL){
-
-                
+                counterOfPipes++;
 
                 if (direction==1){
 
-                    if (upDown(pointer,1).getType()==PipeType.VERTICAL|| upDown(pointer,1).getType()==PipeType.CIRCULAR || upDown(pointer,1).getType()==PipeType.FINAL) {
-                        return simulate(upDown(pointer, 1), 1);
+                    if(upDown(pointer,1)!=null){
+                        if (upDown(pointer,1).getType()==PipeType.VERTICAL|| upDown(pointer,1).getType()==PipeType.CIRCULAR || upDown(pointer,1).getType()==PipeType.FINAL) {
+                            return simulate(upDown(pointer, 1), 1);
+                        }
                     }
                 }
 
                 if (direction==3){
 
-                    if (upDown(pointer,2).getType()==PipeType.VERTICAL|| upDown(pointer,2).getType()==PipeType.CIRCULAR ||upDown(pointer,2).getType()==PipeType.FINAL) {
-                        return simulate(upDown(pointer, 2),3);
+                    if(upDown(pointer,2)!=null){
+                        if (upDown(pointer,2).getType()==PipeType.VERTICAL|| upDown(pointer,2).getType()==PipeType.CIRCULAR ||upDown(pointer,2).getType()==PipeType.FINAL) {
+                            return simulate(upDown(pointer, 2),3);
+                        }
                     }
                 }
             }
 
             //For circular
             else if (pointer.getType()==PipeType.CIRCULAR){
-
-                
+                counterOfPipes++;
 
                 if (direction==1||direction==3){
 
-                    if (pointer.getNext().getType()==PipeType.HORIZONTAL) {
-                        return simulate(pointer.getNext(), 2);
+                    if(pointer.getNext()!=null){
+                        if (pointer.getNext().getType()==PipeType.HORIZONTAL) {
+                            return simulate(pointer.getNext(), 2);
+                        }
                     }
 
-                    if (pointer.getPrevious().getType()==PipeType.HORIZONTAL ) {
-                        return simulate(pointer.getPrevious(), 4);
+                    if(pointer.getPrevious()!=null){
+                        if (pointer.getPrevious().getType()==PipeType.HORIZONTAL ) {
+                            return simulate(pointer.getPrevious(), 4);
+                        }
                     }
                 }
 
                 if (direction==2||direction==4){
-
-                    if (upDown(pointer,1).getType()==PipeType.VERTICAL) {
-                        return simulate(upDown(pointer, 1), 1);
+                    
+                    if(upDown(pointer,1)!=null){
+                        if (upDown(pointer,1).getType()==PipeType.VERTICAL) {
+                            return simulate(upDown(pointer, 1), 1);
+                        }
                     }
 
-                    if (upDown(pointer,2).getType()==PipeType.VERTICAL) {
-                        return simulate(upDown(pointer, 2),3);
+                    if(upDown(pointer,2)!=null){
+                        if (upDown(pointer,2).getType()==PipeType.VERTICAL) {
+                            return simulate(upDown(pointer, 2),3);
+                        }
                     }
                 }
             }
@@ -348,20 +356,18 @@ public class BoardControl {
         return false;
 	}
 
-    
+//Score****************************************************************************************************************************
+
     /** 
      * @param val
      * @param name
      */
-    //Score****************************************************************************************************************************
-
     public void createScore(double val, String name) {
 
         Score newNode= new Score (val, name);
         addScore(newNode,root);
 	}
 
-    
     /** 
      * @param newNode
      * @param pointer
@@ -400,22 +406,17 @@ public class BoardControl {
         }
 	}
 
-    
     /** 
      * @param totalTime
      * @return double
      */
     public double calculateScore(double totalTime){
         
-
-
         double score = counterOfPipes * 100 -(60 - totalTime) * 10;
-       
 
         return score;
     }
 
-    
     /** 
      * @param score
      * @param pointer
@@ -467,8 +468,6 @@ public class BoardControl {
       return array;
 	}
 
-
-    
     /** 
      * @param array
      */
@@ -478,22 +477,17 @@ public class BoardControl {
         System.out.println("");
 
         for (int i=array.size();i>0; i--){
-        array.get(i-1).tableScore();
-        System.out.println("");
-        }
-
-        
+            array.get(i-1).tableScore();
+            System.out.println("");
+        }  
     }
 
-
-    
     /** 
      * @return Score
      */
     public Score getRoot(){
         return root;
     }
-
     
     /** 
      * @return Pipe
